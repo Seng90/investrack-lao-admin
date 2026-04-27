@@ -4,6 +4,13 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Index from "./pages/Index.tsx";
+import Companies from "./pages/Companies.tsx";
+import People from "./pages/People.tsx";
+import Investors from "./pages/Investors.tsx";
+import Rounds from "./pages/Rounds.tsx";
+import Taxonomy from "./pages/Taxonomy.tsx";
+import Moderation from "./pages/Moderation.tsx";
+import BulkImport from "./pages/BulkImport.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -16,7 +23,13 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="/companies" element={<Companies />} />
+          <Route path="/people" element={<People />} />
+          <Route path="/investors" element={<Investors />} />
+          <Route path="/rounds" element={<Rounds />} />
+          <Route path="/taxonomy" element={<Taxonomy />} />
+          <Route path="/moderation" element={<Moderation />} />
+          <Route path="/import" element={<BulkImport />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
