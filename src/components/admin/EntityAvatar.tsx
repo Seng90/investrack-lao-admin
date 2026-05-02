@@ -16,7 +16,7 @@ export function EntityAvatar({ label, size = "md", className }: { label: string;
   return (
     <div
       className={cn(
-        "flex shrink-0 items-center justify-center rounded-md font-semibold text-white shadow-card",
+        "flex shrink-0 items-center justify-center rounded-full font-semibold text-white shadow-card",
         palette[idx],
         dims,
         className,

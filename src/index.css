@@ -2,83 +2,110 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Material 3 (Flutter) inspired theme.
+   Color roles map to M3: primary, secondary, tertiary, surface, surface-variant, outline. */
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222 25% 12%;
+    /* M3 primary palette — Indigo */
+    --background: 270 25% 98%;
+    --foreground: 270 15% 12%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222 25% 12%;
+    --card-foreground: 270 15% 12%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222 25% 12%;
+    --popover-foreground: 270 15% 12%;
 
-    --primary: 222 47% 14%;
+    --primary: 256 60% 45%;          /* M3 primary */
     --primary-foreground: 0 0% 100%;
+    --primary-container: 256 90% 92%;
+    --on-primary-container: 256 70% 18%;
 
-    --secondary: 220 14% 96%;
-    --secondary-foreground: 222 25% 12%;
+    --secondary: 256 18% 42%;
+    --secondary-foreground: 0 0% 100%;
+    --secondary-container: 256 25% 92%;
 
-    --muted: 220 14% 96%;
-    --muted-foreground: 220 9% 46%;
+    --tertiary: 332 55% 48%;
+    --tertiary-container: 332 70% 93%;
 
-    --accent: 217 91% 60%;
+    --muted: 270 20% 95%;
+    --muted-foreground: 270 8% 42%;
+
+    --accent: 256 60% 45%;            /* alias of primary for M3 */
     --accent-foreground: 0 0% 100%;
 
     --success: 152 60% 36%;
     --success-foreground: 0 0% 100%;
-
     --warning: 38 92% 50%;
     --warning-foreground: 0 0% 100%;
-
-    --destructive: 0 72% 51%;
+    --destructive: 0 75% 45%;         /* M3 error */
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 217 91% 60%;
+    --border: 270 15% 88%;            /* outline-variant */
+    --outline: 270 10% 60%;
+    --input: 270 15% 88%;
+    --ring: 256 60% 45%;
 
-    --radius: 0.625rem;
+    /* M3 uses larger, expressive radii */
+    --radius: 1rem;
 
-    --surface: 220 20% 98.5%;
+    --surface: 270 30% 97%;
     --surface-elevated: 0 0% 100%;
+    --surface-variant: 270 20% 93%;
 
-    --shadow-sm: 0 1px 2px 0 hsl(222 25% 12% / 0.04);
-    --shadow-md: 0 4px 12px -2px hsl(222 25% 12% / 0.06), 0 2px 4px -2px hsl(222 25% 12% / 0.04);
-    --shadow-lg: 0 12px 32px -8px hsl(222 25% 12% / 0.10);
+    /* Material elevation (key + ambient) */
+    --shadow-sm: 0 1px 2px 0 hsl(270 30% 10% / 0.10), 0 1px 3px 1px hsl(270 30% 10% / 0.07);
+    --shadow-md: 0 1px 2px 0 hsl(270 30% 10% / 0.12), 0 2px 6px 2px hsl(270 30% 10% / 0.10);
+    --shadow-lg: 0 4px 8px 3px hsl(270 30% 10% / 0.12), 0 1px 3px 0 hsl(270 30% 10% / 0.10);
 
-    --sidebar-background: 222 30% 11%;
-    --sidebar-foreground: 220 14% 78%;
-    --sidebar-primary: 217 91% 60%;
+    /* Material navigation drawer — light surface with primary accent */
+    --sidebar-background: 270 30% 97%;
+    --sidebar-foreground: 270 12% 28%;
+    --sidebar-primary: 256 60% 45%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 222 25% 16%;
-    --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 222 25% 18%;
-    --sidebar-ring: 217 91% 60%;
+    --sidebar-accent: 256 90% 92%;
+    --sidebar-accent-foreground: 256 70% 18%;
+    --sidebar-border: 270 15% 88%;
+    --sidebar-ring: 256 60% 45%;
   }
 
   .dark {
-    --background: 222 30% 8%;
-    --foreground: 220 14% 96%;
-    --card: 222 28% 11%;
-    --card-foreground: 220 14% 96%;
-    --popover: 222 28% 11%;
-    --popover-foreground: 220 14% 96%;
-    --primary: 217 91% 60%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 222 25% 16%;
-    --secondary-foreground: 220 14% 96%;
-    --muted: 222 25% 16%;
-    --muted-foreground: 220 9% 60%;
-    --accent: 217 91% 60%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 72% 51%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 222 25% 18%;
-    --input: 222 25% 18%;
-    --ring: 217 91% 60%;
-    --surface: 222 30% 9%;
-    --surface-elevated: 222 28% 12%;
+    --background: 270 18% 10%;
+    --foreground: 270 15% 92%;
+    --card: 270 16% 14%;
+    --card-foreground: 270 15% 92%;
+    --popover: 270 16% 14%;
+    --popover-foreground: 270 15% 92%;
+    --primary: 256 90% 82%;
+    --primary-foreground: 256 60% 18%;
+    --primary-container: 256 50% 30%;
+    --on-primary-container: 256 90% 92%;
+    --secondary: 256 25% 75%;
+    --secondary-foreground: 256 30% 18%;
+    --secondary-container: 256 20% 28%;
+    --tertiary: 332 80% 82%;
+    --tertiary-container: 332 50% 32%;
+    --muted: 270 14% 18%;
+    --muted-foreground: 270 8% 70%;
+    --accent: 256 90% 82%;
+    --accent-foreground: 256 60% 18%;
+    --destructive: 0 80% 70%;
+    --destructive-foreground: 0 60% 18%;
+    --border: 270 12% 22%;
+    --outline: 270 10% 50%;
+    --input: 270 12% 22%;
+    --ring: 256 90% 82%;
+    --surface: 270 18% 10%;
+    --surface-elevated: 270 16% 14%;
+    --surface-variant: 270 14% 18%;
+    --sidebar-background: 270 18% 12%;
+    --sidebar-foreground: 270 14% 80%;
+    --sidebar-primary: 256 90% 82%;
+    --sidebar-primary-foreground: 256 60% 18%;
+    --sidebar-accent: 256 50% 28%;
+    --sidebar-accent-foreground: 256 90% 92%;
+    --sidebar-border: 270 12% 22%;
+    --sidebar-ring: 256 90% 82%;
   }
 }
 
@@ -86,7 +113,8 @@
   * { @apply border-border; }
   body {
     @apply bg-surface text-foreground antialiased;
-    font-feature-settings: "cv02", "cv03", "cv04", "cv11", "ss01";
+    font-family: "Roboto Flex", "Roboto", system-ui, sans-serif;
+    font-feature-settings: "ss01";
   }
 }
 
@@ -95,4 +123,21 @@
   .shadow-elevated { box-shadow: var(--shadow-md); }
   .shadow-pop { box-shadow: var(--shadow-lg); }
   .text-balance { text-wrap: balance; }
+
+  /* Material state-layer ripple-ish hover overlay */
+  .m3-state {
+    position: relative;
+    isolation: isolate;
+  }
+  .m3-state::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: currentColor;
+    opacity: 0;
+    border-radius: inherit;
+    transition: opacity 150ms ease;
+    pointer-events: none;
+  }
+  .m3-state:hover::after { opacity: 0.08; }
+  .m3-state:active::after { opacity: 0.12; }
 }
