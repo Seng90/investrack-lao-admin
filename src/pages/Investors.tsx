@@ -1,9 +1,11 @@
+import { Link } from "react-router-dom";
 import { AdminShell } from "@/components/admin/AdminShell";
 import { StatusBadge } from "@/components/admin/StatusBadge";
 import { EntityAvatar } from "@/components/admin/EntityAvatar";
+import { RowActions } from "@/components/admin/RowActions";
 import { Button } from "@/components/ui/button";
 import { investors } from "@/data/mockData";
-import { Plus, Download, MoreHorizontal } from "lucide-react";
+import { Plus, Download } from "lucide-react";
 
 const typeColors: Record<string, string> = {
   VC: "bg-accent/10 text-accent ring-accent/20",
@@ -20,7 +22,7 @@ const Investors = () => (
     action={
       <div className="flex gap-2">
         <Button variant="outline" size="sm" className="gap-1.5"><Download className="h-4 w-4" /> Export</Button>
-        <Button size="sm" className="gap-1.5"><Plus className="h-4 w-4" /> Add investor</Button>
+        <Button asChild size="sm" className="gap-1.5"><Link to="/investors/new"><Plus className="h-4 w-4" /> Add investor</Link></Button>
       </div>
     }
   >
@@ -58,7 +60,7 @@ const Investors = () => (
               <td className="px-4 py-3 text-right font-mono tabular-nums">${(i.aum / 1_000_000).toFixed(0)}M</td>
               <td className="px-4 py-3"><StatusBadge status={i.status} /></td>
               <td className="px-4 py-3 text-right">
-                <Button variant="ghost" size="icon" className="h-7 w-7"><MoreHorizontal className="h-4 w-4" /></Button>
+                <RowActions base="/investors" id={i.id} />
               </td>
             </tr>
           ))}
