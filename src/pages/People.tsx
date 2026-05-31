@@ -1,9 +1,11 @@
+import { Link } from "react-router-dom";
 import { AdminShell } from "@/components/admin/AdminShell";
 import { StatusBadge } from "@/components/admin/StatusBadge";
 import { EntityAvatar } from "@/components/admin/EntityAvatar";
+import { RowActions } from "@/components/admin/RowActions";
 import { Button } from "@/components/ui/button";
 import { people } from "@/data/mockData";
-import { Plus, Download, Linkedin, MoreHorizontal } from "lucide-react";
+import { Plus, Download, Linkedin } from "lucide-react";
 
 const People = () => (
   <AdminShell
@@ -12,7 +14,7 @@ const People = () => (
     action={
       <div className="flex gap-2">
         <Button variant="outline" size="sm" className="gap-1.5"><Download className="h-4 w-4" /> Export</Button>
-        <Button size="sm" className="gap-1.5"><Plus className="h-4 w-4" /> Add person</Button>
+        <Button asChild size="sm" className="gap-1.5"><Link to="/people/new"><Plus className="h-4 w-4" /> Add person</Link></Button>
       </div>
     }
   >
@@ -21,9 +23,9 @@ const People = () => (
         <article key={p.id} className="group rounded-lg border border-border bg-card p-5 shadow-card transition-all hover:-translate-y-0.5 hover:shadow-elevated">
           <div className="flex items-start justify-between">
             <EntityAvatar label={p.initials} size="lg" />
-            <Button variant="ghost" size="icon" className="h-7 w-7 opacity-0 transition-opacity group-hover:opacity-100">
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
+            <div className="opacity-0 transition-opacity group-hover:opacity-100">
+              <RowActions base="/people" id={p.id} />
+            </div>
           </div>
           <h3 className="mt-3 truncate text-base font-semibold tracking-tight">{p.name}</h3>
           <p className="text-sm text-muted-foreground">{p.role}</p>

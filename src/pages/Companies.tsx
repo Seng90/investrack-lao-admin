@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { AdminShell } from "@/components/admin/AdminShell";
 import { StatusBadge } from "@/components/admin/StatusBadge";
 import { EntityAvatar } from "@/components/admin/EntityAvatar";
+import { RowActions } from "@/components/admin/RowActions";
 import { Button } from "@/components/ui/button";
 import { companies, sectors } from "@/data/mockData";
-import { Filter, Download, Plus, Search, ArrowUpDown, MoreHorizontal } from "lucide-react";
+import { Filter, Download, Plus, Search, ArrowUpDown } from "lucide-react";
 
 const Companies = () => {
   const [query, setQuery] = useState("");
@@ -23,7 +25,7 @@ const Companies = () => {
       action={
         <div className="flex gap-2">
           <Button variant="outline" size="sm" className="gap-1.5"><Download className="h-4 w-4" /> Export CSV</Button>
-          <Button size="sm" className="gap-1.5"><Plus className="h-4 w-4" /> New company</Button>
+          <Button asChild size="sm" className="gap-1.5"><Link to="/companies/new"><Plus className="h-4 w-4" /> New company</Link></Button>
         </div>
       }
     >
@@ -91,7 +93,7 @@ const Companies = () => {
                   <td className="px-4 py-3 font-mono tabular-nums text-muted-foreground">{c.founded}</td>
                   <td className="px-4 py-3"><StatusBadge status={c.status} /></td>
                   <td className="px-4 py-3 text-right">
-                    <Button variant="ghost" size="icon" className="h-7 w-7"><MoreHorizontal className="h-4 w-4" /></Button>
+                    <RowActions base="/companies" id={c.id} />
                   </td>
                 </tr>
               ))}

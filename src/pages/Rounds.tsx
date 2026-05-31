@@ -1,8 +1,10 @@
+import { Link } from "react-router-dom";
 import { AdminShell } from "@/components/admin/AdminShell";
 import { StatusBadge } from "@/components/admin/StatusBadge";
+import { RowActions } from "@/components/admin/RowActions";
 import { Button } from "@/components/ui/button";
 import { rounds } from "@/data/mockData";
-import { Plus, Download, MoreHorizontal, TrendingUp } from "lucide-react";
+import { Plus, Download, TrendingUp } from "lucide-react";
 
 const Rounds = () => (
   <AdminShell
@@ -11,7 +13,7 @@ const Rounds = () => (
     action={
       <div className="flex gap-2">
         <Button variant="outline" size="sm" className="gap-1.5"><Download className="h-4 w-4" /> Export</Button>
-        <Button size="sm" className="gap-1.5"><Plus className="h-4 w-4" /> Log round</Button>
+        <Button asChild size="sm" className="gap-1.5"><Link to="/rounds/new"><Plus className="h-4 w-4" /> Log round</Link></Button>
       </div>
     }
   >
@@ -44,7 +46,7 @@ const Rounds = () => (
               <td className="px-4 py-3 text-right font-mono tabular-nums">{r.investors}</td>
               <td className="px-4 py-3"><StatusBadge status={r.status} /></td>
               <td className="px-4 py-3 text-right">
-                <Button variant="ghost" size="icon" className="h-7 w-7"><MoreHorizontal className="h-4 w-4" /></Button>
+                <RowActions base="/rounds" id={r.id} />
               </td>
             </tr>
           ))}
