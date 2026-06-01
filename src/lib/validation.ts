@@ -79,7 +79,7 @@ export const roundSchema = z
 
 export type FieldErrors = Record<string, string>;
 
-export function collectErrors(result: { success: false; error: z.ZodError }): FieldErrors {
+export function collectErrors(result: { error: z.ZodError }): FieldErrors {
   const errs: FieldErrors = {};
   for (const issue of result.error.issues) {
     const key = issue.path[0] as string;
