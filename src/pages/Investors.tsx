@@ -45,7 +45,7 @@ const Investors = () => (
             <tr key={i.id} className="border-b border-border last:border-b-0 transition-colors hover:bg-secondary/40">
               <td className="px-4 py-3">
                 <div className="flex items-center gap-3">
-                  <EntityAvatar label={i.name.slice(0, 2)} />
+                  <EntityAvatar label={i.name.slice(0, 2)} imageUrl={i.imageUrl} />
                   <p className="font-medium">{i.name}</p>
                 </div>
               </td>

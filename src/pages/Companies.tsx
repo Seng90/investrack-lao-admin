@@ -77,7 +77,7 @@ const Companies = () => {
                   <td className="px-4 py-3"><input type="checkbox" className="rounded border-input" /></td>
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-3">
-                      <EntityAvatar label={c.logo} />
+                      <EntityAvatar label={c.logo} imageUrl={c.imageUrl} />
                       <div>
                         <p className="font-medium leading-tight">{c.name}</p>
                         <p className="text-xs text-muted-foreground">{c.employees} employees</p>
