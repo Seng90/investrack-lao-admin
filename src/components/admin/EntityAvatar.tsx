@@ -10,9 +10,26 @@ const palette = [
   "bg-[hsl(340_75%_55%)]",
 ];
 
-export function EntityAvatar({ label, size = "md", className }: { label: string; size?: "sm" | "md" | "lg"; className?: string }) {
-  const idx = label.charCodeAt(0) % palette.length;
+export function EntityAvatar({
+  label,
+  size = "md",
+  className,
+  imageUrl,
+}: {
+  label: string;
+  size?: "sm" | "md" | "lg";
+  className?: string;
+  imageUrl?: string;
+}) {
+  const idx = (label.charCodeAt(0) || 0) % palette.length;
   const dims = size === "sm" ? "h-7 w-7 text-[11px]" : size === "lg" ? "h-12 w-12 text-base" : "h-9 w-9 text-xs";
+  if (imageUrl) {
+    return (
+      <div className={cn("shrink-0 overflow-hidden rounded-full bg-secondary shadow-card", dims, className)}>
+        <img src={imageUrl} alt={label} className="h-full w-full object-cover" />
+      </div>
+    );
+  }
   return (
     <div
       className={cn(
