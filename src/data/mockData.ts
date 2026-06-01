@@ -4,6 +4,7 @@ export interface Company {
   id: string;
   name: string;
   logo: string;
+  imageUrl?: string;
   sector: string;
   stage: string;
   province: string;
@@ -28,6 +29,7 @@ export interface Person {
 export interface Investor {
   id: string;
   name: string;
+  imageUrl?: string;
   type: "VC" | "Angel" | "Corporate" | "Government" | "Accelerator";
   hq: string;
   investments: number;

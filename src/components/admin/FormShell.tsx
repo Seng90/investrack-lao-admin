@@ -37,11 +37,35 @@ export function FormShell({ title, subtitle, backTo, backLabel, onSubmit, submit
   );
 }
 
-export function Field({ label, children, full }: { label: string; children: React.ReactNode; full?: boolean }) {
+export function Field({
+  label,
+  children,
+  full,
+  error,
+  required,
+  hint,
+}: {
+  label: string;
+  children: React.ReactNode;
+  full?: boolean;
+  error?: string;
+  required?: boolean;
+  hint?: string;
+}) {
   return (
     <label className={`flex flex-col gap-1.5 ${full ? "sm:col-span-2" : ""}`}>
-      <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">{label}</span>
-      {children}
+      <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+        {label}
+        {required && <span className="ml-1 text-destructive">*</span>}
+      </span>
+      <div className={error ? "[&_input]:border-destructive [&_select]:border-destructive [&_textarea]:border-destructive" : ""}>
+        {children}
+      </div>
+      {error ? (
+        <span className="text-xs text-destructive">{error}</span>
+      ) : hint ? (
+        <span className="text-[11px] text-muted-foreground">{hint}</span>
+      ) : null}
     </label>
   );
 }
