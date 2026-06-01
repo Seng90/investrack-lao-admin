@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { FormShell, Field, inputCls } from "@/components/admin/FormShell";
+import { ImagePicker } from "@/components/admin/ImagePicker";
 import { investors } from "@/data/mockData";
 import { toast } from "@/hooks/use-toast";
+import { investorSchema, collectErrors, type FieldErrors } from "@/lib/validation";
 
 const types = ["VC", "Angel", "Corporate", "Government", "Accelerator"] as const;
 const statuses = ["draft", "pending", "verified", "rejected"];
@@ -15,19 +17,30 @@ const InvestorForm = () => {
 
   const [form, setForm] = useState({
     name: existing?.name ?? "",
-    type: existing?.type ?? "VC",
+    type: (existing?.type ?? "VC") as (typeof types)[number],
     hq: existing?.hq ?? "",
     focus: existing?.focus ?? "",
     investments: existing?.investments ?? 0,
     aum: existing?.aum ?? 0,
     website: "",
     status: existing?.status ?? "draft",
+    imageUrl: existing?.imageUrl ?? "",
   });
+  const [errors, setErrors] = useState<FieldErrors>({});
 
-  const set = (k: string, v: any) => setForm((f) => ({ ...f, [k]: v }));
+  const set = (k: string, v: any) => {
+    setForm((f) => ({ ...f, [k]: v }));
+    if (errors[k]) setErrors((e) => ({ ...e, [k]: "" }));
+  };
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const result = investorSchema.safeParse(form);
+    if (!result.success) {
+      setErrors(collectErrors(result));
+      toast({ title: "Please fix the highlighted fields", variant: "destructive" });
+      return;
+    }
     toast({
       title: editing ? "Investor updated" : "Investor created",
       description: `${form.name} saved successfully.`,
@@ -44,30 +57,36 @@ const InvestorForm = () => {
       onSubmit={onSubmit}
       submitLabel={editing ? "Save changes" : "Create investor"}
     >
-      <Field label="Investor name" full>
-        <input required value={form.name} onChange={(e) => set("name", e.target.value)} className={inputCls} />
+      <ImagePicker
+        value={form.imageUrl}
+        onChange={(url) => set("imageUrl", url)}
+        fallbackLabel={form.name.slice(0, 2) || "In"}
+        shape="circle"
+      />
+      <Field label="Investor name" full required error={errors.name}>
+        <input value={form.name} onChange={(e) => set("name", e.target.value)} className={inputCls} />
       </Field>
-      <Field label="Type">
+      <Field label="Type" required error={errors.type}>
         <select value={form.type} onChange={(e) => set("type", e.target.value as any)} className={inputCls}>
           {types.map((t) => <option key={t}>{t}</option>)}
         </select>
       </Field>
-      <Field label="Headquarters">
+      <Field label="Headquarters" required error={errors.hq}>
         <input value={form.hq} onChange={(e) => set("hq", e.target.value)} className={inputCls} placeholder="Vientiane, LA" />
       </Field>
-      <Field label="Investment focus" full>
+      <Field label="Investment focus" full error={errors.focus}>
         <input value={form.focus} onChange={(e) => set("focus", e.target.value)} className={inputCls} placeholder="e.g. Southeast Asia growth" />
       </Field>
-      <Field label="Investments to date">
-        <input type="number" value={form.investments} onChange={(e) => set("investments", +e.target.value)} className={inputCls} />
+      <Field label="Investments to date" error={errors.investments}>
+        <input type="number" min={0} value={form.investments} onChange={(e) => set("investments", +e.target.value)} className={inputCls} />
       </Field>
-      <Field label="AUM (USD)">
-        <input type="number" value={form.aum} onChange={(e) => set("aum", +e.target.value)} className={inputCls} />
+      <Field label="AUM (USD)" error={errors.aum}>
+        <input type="number" min={0} value={form.aum} onChange={(e) => set("aum", +e.target.value)} className={inputCls} />
       </Field>
-      <Field label="Website" full>
+      <Field label="Website" full error={errors.website} hint="Include https://">
         <input value={form.website} onChange={(e) => set("website", e.target.value)} className={inputCls} placeholder="https://" />
       </Field>
-      <Field label="Status">
+      <Field label="Status" required error={errors.status}>
         <select value={form.status} onChange={(e) => set("status", e.target.value)} className={inputCls}>
           {statuses.map((s) => <option key={s}>{s}</option>)}
         </select>
