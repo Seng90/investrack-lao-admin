@@ -36,7 +36,7 @@ const RoundForm = () => {
     e.preventDefault();
     const result = roundSchema.safeParse(form);
     if (!result.success) {
-      setErrors(collectErrors(result));
+      setErrors(collectErrors(result.error));
       toast({ title: "Please fix the highlighted fields", variant: "destructive" });
       return;
     }
