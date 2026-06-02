@@ -5,7 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Index from "./pages/Index.tsx";
 import Companies from "./pages/Companies.tsx";
-import People from "./pages/People.tsx";
+import Members from "./pages/Members.tsx";
 import Investors from "./pages/Investors.tsx";
 import Rounds from "./pages/Rounds.tsx";
 import Taxonomy from "./pages/Taxonomy.tsx";
@@ -34,9 +34,7 @@ const App = () => (
           <Route path="/companies/new" element={<CompanyForm />} />
           <Route path="/companies/:id/edit" element={<CompanyForm />} />
 
-          <Route path="/people" element={<People />} />
-          <Route path="/people/new" element={<PersonForm />} />
-          <Route path="/people/:id/edit" element={<PersonForm />} />
+          <Route path="/members" element={<Members />} />
 
           <Route path="/investors" element={<Investors />} />
           <Route path="/investors/new" element={<InvestorForm />} />

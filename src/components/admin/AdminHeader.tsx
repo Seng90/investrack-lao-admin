@@ -1,7 +1,15 @@
-import { Search, Bell, Plus, ChevronDown, Menu } from "lucide-react";
+import { Search, Bell, Plus, ChevronDown, Menu, Sun, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useSettings } from "@/lib/settingsStore";
 
 export function AdminHeader({ title, subtitle, action }: { title: string; subtitle?: string; action?: React.ReactNode }) {
+  const { settings, update } = useSettings();
+  const isDark =
+    settings.appearance.theme === "Dark" ||
+    (settings.appearance.theme === "System" &&
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches);
+  const toggleTheme = () => update("appearance", { theme: isDark ? "Light" : "Dark" });
   return (
     <header className="sticky top-0 z-20 bg-surface/85 backdrop-blur-xl">
       {/* Material 3 top app bar */}
@@ -23,6 +31,15 @@ export function AdminHeader({ title, subtitle, action }: { title: string; subtit
         </div>
 
         <div className="ml-auto flex items-center gap-1">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={toggleTheme}
+            aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+            title={isDark ? "Light mode" : "Dark mode"}
+          >
+            {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+          </Button>
           <Button variant="ghost" size="icon" className="relative">
             <Bell className="h-5 w-5" />
             <span className="absolute right-2.5 top-2.5 h-2 w-2 rounded-full bg-[hsl(var(--tertiary))] ring-2 ring-surface" />
