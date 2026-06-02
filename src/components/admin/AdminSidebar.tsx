@@ -15,8 +15,8 @@ import {
 const primary = [
   { to: "/", label: "Dashboard", icon: LayoutDashboard, end: true },
   { to: "/companies", label: "Companies", icon: Building2, count: 248 },
-  { to: "/people", label: "People", icon: Users, count: 612 },
   { to: "/investors", label: "Investors", icon: Wallet, count: 84 },
+  { to: "/members", label: "Members", icon: Users, count: 312 },
   { to: "/rounds", label: "Funding Rounds", icon: TrendingUp, count: 156 },
   { to: "/taxonomy", label: "Taxonomy", icon: Tags },
 ];
