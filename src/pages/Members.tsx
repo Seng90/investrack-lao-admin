@@ -30,10 +30,7 @@ const Members = () => {
   const [members, setMembers] = useState<Member[]>(memberStore.get());
   const [pending, setPending] = useState<Member | null>(null);
 
-  useEffect(() => {
-    const unsub = memberStore.subscribe(() => setMembers([...memberStore.get()]));
-    return () => { unsub; };
-  }, []);
+  useEffect(() => memberStore.subscribe(() => setMembers([...memberStore.get()])), []);
 
   const totalMrr = members.reduce((s, m) => s + m.mrr, 0);
   const paid = members.filter((m) => m.plan !== "Free").length;
