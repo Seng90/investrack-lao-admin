@@ -12,6 +12,7 @@ import Taxonomy from "./pages/Taxonomy.tsx";
 import Moderation from "./pages/Moderation.tsx";
 import BulkImport from "./pages/BulkImport.tsx";
 import CompanyForm from "./pages/CompanyForm.tsx";
+import MemberForm from "./pages/MemberForm.tsx";
 
 import InvestorForm from "./pages/InvestorForm.tsx";
 import RoundForm from "./pages/RoundForm.tsx";
