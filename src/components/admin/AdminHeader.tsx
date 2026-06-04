@@ -22,7 +22,7 @@ export function AdminHeader({ title, subtitle, action }: { title: string; subtit
           <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
           <input
             type="search"
-            placeholder="Search companies, people, investors…"
+            placeholder="Search companies, investors, members…"
             className="h-12 w-full rounded-full border border-transparent bg-[hsl(var(--surface-variant))] pl-11 pr-16 text-sm placeholder:text-muted-foreground focus:border-ring focus:bg-card focus:outline-none focus:ring-2 focus:ring-ring/20"
           />
           <kbd className="pointer-events-none absolute right-4 top-1/2 hidden -translate-y-1/2 select-none gap-1 rounded-full border border-border bg-card px-2 py-0.5 font-mono text-[10px] font-medium text-muted-foreground sm:inline-flex">
