@@ -1,8 +1,19 @@
 import { useParams, Navigate } from "react-router-dom";
 import { DeleteShell } from "@/components/admin/DeleteShell";
-import { companies, people, investors, rounds } from "@/data/mockData";
+import { companies, investors, rounds } from "@/data/mockData";
 
-type Entity = "companies" | "people" | "investors" | "rounds";
+type Entity = "companies" | "members" | "investors" | "rounds";
+
+const memberNames: Record<string, string> = {
+  m1: "Souphanh Keomany",
+  m2: "Vilaykham Phommachanh",
+  m3: "Noy Sisavath",
+  m4: "Khamla Vongdara",
+  m5: "Mali Inthavong",
+  m6: "Bounmy Sengdara",
+  m7: "Anong Phimmasone",
+  m8: "Thavone Xayachack",
+};
 
 const config: Record<Entity, { label: string; back: string; backLabel: string; find: (id: string) => string | undefined }> = {
   companies: {
@@ -11,11 +22,11 @@ const config: Record<Entity, { label: string; back: string; backLabel: string; f
     backLabel: "Back to companies",
     find: (id) => companies.find((c) => c.id === id)?.name,
   },
-  people: {
-    label: "Person",
-    back: "/people",
-    backLabel: "Back to people",
-    find: (id) => people.find((p) => p.id === id)?.name,
+  members: {
+    label: "Member",
+    back: "/members",
+    backLabel: "Back to members",
+    find: (id) => memberNames[id],
   },
   investors: {
     label: "Investor",

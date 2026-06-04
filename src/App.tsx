@@ -12,6 +12,7 @@ import Taxonomy from "./pages/Taxonomy.tsx";
 import Moderation from "./pages/Moderation.tsx";
 import BulkImport from "./pages/BulkImport.tsx";
 import CompanyForm from "./pages/CompanyForm.tsx";
+import MemberForm from "./pages/MemberForm.tsx";
 
 import InvestorForm from "./pages/InvestorForm.tsx";
 import RoundForm from "./pages/RoundForm.tsx";
@@ -35,6 +36,8 @@ const App = () => (
           <Route path="/companies/:id/edit" element={<CompanyForm />} />
 
           <Route path="/members" element={<Members />} />
+          <Route path="/members/new" element={<MemberForm />} />
+          <Route path="/members/:id/edit" element={<MemberForm />} />
 
           <Route path="/investors" element={<Investors />} />
           <Route path="/investors/new" element={<InvestorForm />} />
