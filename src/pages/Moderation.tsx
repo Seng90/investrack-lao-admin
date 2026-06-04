@@ -27,7 +27,7 @@ const Moderation = () => (
     </div>
 
     <div className="flex gap-1 border-b border-border">
-      {["All (12)", "High priority (2)", "Companies (4)", "People (3)", "Investors (2)", "Rounds (3)"].map((tab, i) => (
+      {["All (12)", "High priority (2)", "Companies (4)", "Members (3)", "Investors (2)", "Rounds (3)"].map((tab, i) => (
         <button
           key={tab}
           className={cn(

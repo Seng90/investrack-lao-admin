@@ -12,7 +12,7 @@ const recent = [
 const BulkImport = () => (
   <AdminShell
     title="Bulk Import"
-    subtitle="Upload CSV files to ingest companies, people, investors and rounds in batches"
+    subtitle="Upload CSV files to ingest companies, members, investors and rounds in batches"
   >
     <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
       <section className="lg:col-span-2 space-y-4">
@@ -67,7 +67,7 @@ const BulkImport = () => (
           <div className="mt-4 space-y-2">
             {[
               { label: "Companies", desc: "name, sector, stage, province…" },
-              { label: "People", desc: "name, role, company, linkedin…" },
+              { label: "Members", desc: "name, email, plan, seats…" },
               { label: "Investors", desc: "name, type, hq, focus…" },
               { label: "Funding rounds", desc: "company, type, amount, date…" },
             ].map((opt, i) => (

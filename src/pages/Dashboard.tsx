@@ -35,7 +35,7 @@ const Dashboard = () => {
     >
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <StatCard label="Companies" value="248" delta={{ value: "+12 this month", positive: true }} hint="32 awaiting review" icon={<Building2 className="h-4 w-4" />} />
-        <StatCard label="Founders & people" value="612" delta={{ value: "+38", positive: true }} hint="84 unverified" icon={<Users className="h-4 w-4" />} />
+        <StatCard label="Members" value="612" delta={{ value: "+38", positive: true }} hint="84 unverified" icon={<Users className="h-4 w-4" />} />
         <StatCard label="Active investors" value="84" delta={{ value: "+4", positive: true }} hint="across 11 countries" icon={<Wallet className="h-4 w-4" />} />
         <StatCard label="Funding tracked (YTD)" value="$48.6M" delta={{ value: "−6.4%", positive: false }} hint="vs. same period 2024" icon={<TrendingUp className="h-4 w-4" />} />
       </div>
