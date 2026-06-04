@@ -12,9 +12,10 @@ import {
 interface Props {
   base: string; // e.g. "/companies"
   id: string;
+  onDelete?: () => void;
 }
 
-export function RowActions({ base, id }: Props) {
+export function RowActions({ base, id, onDelete }: Props) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -29,11 +30,20 @@ export function RowActions({ base, id }: Props) {
           </Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem asChild className="text-destructive focus:text-destructive">
-          <Link to={`${base}/${id}/delete`} className="cursor-pointer">
+        {onDelete ? (
+          <DropdownMenuItem
+            onSelect={(e) => { e.preventDefault(); onDelete(); }}
+            className="cursor-pointer text-destructive focus:text-destructive"
+          >
             <Trash2 className="mr-2 h-4 w-4" /> Delete
-          </Link>
-        </DropdownMenuItem>
+          </DropdownMenuItem>
+        ) : (
+          <DropdownMenuItem asChild className="text-destructive focus:text-destructive">
+            <Link to={`${base}/${id}/delete`} className="cursor-pointer">
+              <Trash2 className="mr-2 h-4 w-4" /> Delete
+            </Link>
+          </DropdownMenuItem>
+        )}
       </DropdownMenuContent>
     </DropdownMenu>
   );
